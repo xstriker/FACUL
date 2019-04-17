@@ -1,0 +1,40 @@
+﻿# Comando para alterar para permissão de administrador
+Switch>ENA
+# Comando para entrar no modo de configuração do switch
+Switch#CONF T
+# Comando para configurar a VLAN numero 2. Como a VLAN ainda não existe ela sera criada
+Switch(config)#VLAN 2
+# Comando para nomear a VLAN. VLAN recebe o nome PROFESSORES
+Switch(config-vlan)#NAME PROFESSORES
+# Comando para encerrar o modo de configuração
+Switch(config-vlan)#END
+# Comando para configurar a VLAN numero 3. Como a VLAN ainda não existe ela sera criada
+Switch(config)#VLAN 3
+# Comando para nomear a VLAN. VLAN recebe o nome ALUNOS
+Switch(config-vlan)#NAME ALUNOS
+# Comando para encerrar o modo de configuração
+Switch(config-vlan)#END
+# Comando para entrar no modo de configuração do switch
+Switch# CONF T
+# Comando para acessar a porta 3 do switch
+Switch(config)#INT F0/1
+# Comando para atribuir a porta 1 à VLAN 2 (PROFESSORES)
+Switch(config-if)#SWitchport ACCESS VLAN 2
+# Comando para acessar a porta 2 do switch
+Switch(config)#INT F0/2
+# Comando para atribuir a porta 2 à VLAN 2 (PROFESSORES)
+Switch(config-if)#SWitchport ACCESS VLAN 2
+# Comando para acessar a porta 3 do switch
+Switch(config)#INT F0/3
+# Comando para atribuir a porta 3 à VLAN 3 (ALUNOS)
+Switch(config-if)#SWitchport ACCESS VLAN 3
+# Comando para acessar a porta 4 do switch
+Switch(config-if)#INT F0/4
+# Comando para atribuir a porta 4 à VLAN 3 (ALUNOS)
+Switch(config-if)#SWitchport ACCESS VLAN 3
+# Comando para encerrar o modo de configuração da porta
+Switch(config-if)#EXIT
+# Comando para encerrar o modo de configuração do switch
+Switch(config)#EXIT
+# Comando para salvar as configurações executadas
+Switch#WR

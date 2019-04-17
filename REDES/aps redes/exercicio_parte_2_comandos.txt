@@ -1,0 +1,43 @@
+# Os comandos a seguir devem ser executados em ambos os switchs
+# Comando para entrar em modo de administrador
+Switch>ENA
+# Comando para entrar no modo de configuração
+Switch#CONF T
+# Comando para configurar a VLAN numero 2. Como a VLAN ainda não existe ela sera criada
+Switch(config)#VLAN 2
+# Comando para nomear a VLAN. VLAN recebe o nome PROFESSORES
+Switch(config-vlan)#NAME PROFESSORES
+# Comando para encerrar o modo de configuração
+Switch(config-vlan)#END
+# Comando para entrar no modo de configuração novamente
+Switch#CONF T
+# Comando para configurar a VLAN numero 3. Como a VLAN ainda não existe ela sera criada
+Switch(config)#VLAN 3
+# Comando para nomear a VLAN. VLAN recebe o nome ALUNOS
+Switch(config-vlan)#NAME ALUNOS
+# Comando para sair do modo de configuração da VLAN
+Switch(config-vlan)#EXIT
+# Comando para entrar no modo de configuração da porta 1
+Switch(config)#INT F0/1
+# Comando para atribuir a porta 1 à VLAN 2 (PROFESSORES)
+Switch(config-if)#SWitchport ACcess VLAN 2
+# Comando para entrar no modo de configuração da porta 2
+Switch(config-if)#INT F0/2
+# Comando para atribuir a porta 2 à VLAN 3 (ALUNOS)
+Switch(config-if)#SWitchport ACcess VLAN 3
+# Comando para encerrar o modo de configuração
+Switch(config-if)#END
+# Comando para salvar as configurações realizadas
+Switch#WR
+# Os comandos a seguir devem ser executados apenas uma vez em um dos switchs
+# Comando para entrar em modo de configuração
+Switch#CONF T
+# Comando para entrar no modo de configuração da porta 24
+Switch(config)#INT F0/24
+# Comando para alterar o modo da porta para TRUNK
+Switch(config-if)#SWitchport MOde TRunk
+# Comando para encerrar o modo de configuração
+Switch(config-if)#END
+# Comando para salvar as configurações
+Switch#WR
+

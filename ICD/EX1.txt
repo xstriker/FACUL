@@ -1,0 +1,6 @@
+
+	 O método consiste em utilizar a soma dos quadrados das diferenças entre a distância de cada ponto e a média do cluster. 
+	 O cluster será formado pelos 2 clusters que após a fusão apresentarem o menor valor de variância total.
+	 
+	 
+	 

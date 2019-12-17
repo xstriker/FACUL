@@ -1,0 +1,100 @@
+
+	read and list values - Map<proposal_id, event>
+		validate duplicated events - by map key
+		validate late events - filter by action and ids - get latest timestamps
+	
+	event:
+	
+		event_id 			- no validation
+		event_schema		- no validation
+		event_action		- no validation
+		event_timestamp		- no validation
+		
+		getters + setters + constructor
+		
+		
+	proposal is as event:
+	
+		proposal_id									- no validation
+		proposal_loan_value							- 30k <= x <= 3kk
+		proposal_number_of_monthly_installments		- 24 <= x <= 180
+		warranties[]								- length >= 1 / sum >= loan*2
+		proponents[]								- length >= 2 / (one main)
+		
+		getters + setters + constructor
+		
+	warranty is as event: - validate 
+		
+		warranty_id			- no validation
+		warranty_value		- no validation
+		warranty_province	- not (PR, SC e RS) *** discard warranty or entire proposal????????
+		
+	proponent is as event:
+	
+		proponent_id				- no validation
+		proponent_name				- no validation
+		proponent_age				- age >= 18
+		proponent_monthly_income:
+			4 * (loan/installments) if 18 <= age <= 24 anos
+			3 * (loan/installments) if 24 <= age <= 50 anos
+			2 * (loan/installments) if age > 50
+		proponent_is_main			- no validation
+		
+	schemaEnum:
+	
+		proposal, warranty, proponent
+		
+	actionEnum:
+	
+		created, added, updated, removed
+	
+	
+	
+--------------- builder example
+public class Event {
+
+    public static class Builder {
+
+        private long eventId;
+        private String schema;
+        private String action;
+        private Timestamp timestamp;
+
+        public Builder(long eventId) {
+            this.eventId = eventId;
+        }
+
+        public Builder withSchema(String schema) {
+            this.schema = schema;
+            return this;
+        }
+
+        public Builder performingAction(String action) {
+            this.action = action;
+            return this;
+        }
+
+        public Builder atTime(Timestamp timestamp) {
+            this.timestamp = timestamp;
+            return this;
+        }
+
+        public Event build() {
+            Event event = new Event();
+            event.eventId = this.eventId;
+            event.schema = this.schema;
+            event.action = this.action;
+            event.timestamp = this.timestamp;
+            return event;
+        }
+    }
+
+    private long eventId;
+    private String schema;
+    private String action;
+    private Timestamp timestamp;
+
+    private Event() {
+
+    }
+}
